@@ -11,6 +11,6 @@ namespace MU.Domain.Entities
         public DateTime Birthay { get; set; }
         public bool Enabled { get; set; }
 
-        public virtual ICollection<Property> Property { get; set; } = new List<Property>();
+        public virtual ICollection<Property> Properties { get; set; } = new List<Property>();
     }
 }

@@ -38,7 +38,7 @@ namespace MU.Application.Services
             if (entity.IdProperty == 0)
                 throw new ArgumentException("El identificador de la propiedad no es valido.");
 
-            if (entity.Price <= 0)
+            if (entity.PriceSale <= 0)
                 throw new ArgumentException("El precio de la propiedad debe ser superior a 0.");
 
             repositoryProperty.ChangePrice( entity );
@@ -52,7 +52,7 @@ namespace MU.Application.Services
             if (entity.IdProperty == 0)
                 throw new ArgumentException("El identificador de la propiedad no es valido.");
 
-            if (entity.Price <= 0)
+            if (entity.PriceSale <= 0)
                 throw new ArgumentException("El precio de la propiedad debe ser superior a 0.");
 
             if (String.IsNullOrEmpty(entity.Address))
