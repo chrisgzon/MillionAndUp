@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MU.Application\MU.Application.csproj" />
     <ProjectReference Include="..\MU.Domain\MU.Domain.csproj" />
   </ItemGroup>
 

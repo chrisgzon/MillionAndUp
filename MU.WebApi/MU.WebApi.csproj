@@ -9,12 +9,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MU.Application\MU.Application.csproj" />
-    <ProjectReference Include="..\MU.MSSQL\MU.MSSQL.csproj" />
+    <ProjectReference Include="..\MU.Infrastructure\MU.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
