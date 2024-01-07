@@ -11,9 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{04B2DF86-EB9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MU.WebApi", "MU.WebApi\MU.WebApi.csproj", "{1609F7A4-7409-4552-949D-0EF68BD8059D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MU.Infrastructure", "MU.Infrastructure\MU.Infrastructure.csproj", "{92AB0E36-FF77-4B70-833E-C20D8FC6455F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MU.Infrastructure", "MU.Infrastructure\MU.Infrastructure.csproj", "{92AB0E36-FF77-4B70-833E-C20D8FC6455F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7A2E0164-3507-4747-9C12-5FE2B3B6AFCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{ED82DD0C-347C-432E-95FC-E0CE8D1DBCAE}"
+	ProjectSection(SolutionItems) = preProject
+		initialMigrationScript.sql = initialMigrationScript.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
