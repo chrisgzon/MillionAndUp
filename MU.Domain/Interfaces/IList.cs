@@ -2,7 +2,7 @@
 {
     public interface IList<TEntity, TEntityID>
     {
-        TEntity List();
-        TEntity SearchByID(TEntityID entityId);
+        Task<TEntity> List();
+        Task<TEntity?> SearchByIdAsync(TEntityID entityId);
     }
 }

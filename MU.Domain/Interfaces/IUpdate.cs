@@ -2,6 +2,6 @@
 {
     public interface IUpdate<TEntity>
     {
-        void Update(TEntity entity);
+        Task Update(TEntity entity);
     }
 }

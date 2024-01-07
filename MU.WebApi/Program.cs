@@ -1,17 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using MU.MSSQL.Contexts;
-using MU.WebApi.Extensions;
+using MU.Application;
+using MU.Infrastructure;
+using MU.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
-string connectionString = builder.Configuration.GetConnectionString("MU_SQL_DefaultConection");
-builder.Services.AddDbContext<MUContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddServices();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddPresentation()
+                .AddInfrastructure(builder.Configuration)
+                .AddApplication();
 
 var app = builder.Build();
 
