@@ -8,7 +8,7 @@ namespace MU.WebApi.Controllers
 {
     [Route("Property")]
     [ApiController]
-    public class PropertyController : ControllerBase
+    public class PropertyController : ApiController
     {
         private readonly ISender _mediator;
 
@@ -21,13 +21,19 @@ namespace MU.WebApi.Controllers
         public async Task<IActionResult> Create([FromBody] CreatePropertyCommand request)
         {
             var createPropertyResult = await _mediator.Send(request);
-            return Ok(createPropertyResult);
+            return createPropertyResult.Match(
+                customers => Ok(customers),
+                errors => Problem(errors)
+            );
         }
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var createPropertyResult = await _mediator.Send(new ListPropertiesQuery());
-            return Ok(createPropertyResult);
+            var listProperties = await _mediator.Send(new ListPropertiesQuery());
+            return listProperties.Match(
+                customers => Ok(customers),
+                errors => Problem(errors)
+            );
         }
     }
 }

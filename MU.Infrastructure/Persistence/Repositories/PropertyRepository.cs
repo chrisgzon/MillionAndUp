@@ -19,7 +19,7 @@ namespace MU.Infrastructure.Repositories
 
         public async Task Create(Property entity) => await _muContext.Properties.AddAsync(entity);
 
-        public async Task<ICollection<Property>> ListAsync()
+        public async Task<List<Property>> ListAsync()
         {
             return await _muContext.Properties.Select(p => new Property
             {

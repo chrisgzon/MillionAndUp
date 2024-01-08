@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using ErrorOr;
+using MediatR;
 using MU.Domain.Entities;
 
 namespace MU.Application.UseCases.Properties.Commands.Create
@@ -14,5 +15,5 @@ namespace MU.Application.UseCases.Properties.Commands.Create
         double PriceSale,
         int YearBuild,
         int IdOwner,
-        bool Enabled) : IRequest<Unit>;
+        bool Enabled) : IRequest<ErrorOr<Unit>>;
 }
