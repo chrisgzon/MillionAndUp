@@ -13,7 +13,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "Owner",
                 columns: table => new
                 {
-                    IdOwner = table.Column<int>(type: "int", nullable: false),
+                    IdOwner = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Address_City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Address_State = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -33,7 +34,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "Property",
                 columns: table => new
                 {
-                    IdProperty = table.Column<int>(type: "int", nullable: false),
+                    IdProperty = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Address_City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Address_State = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -61,7 +63,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "PropertyImage",
                 columns: table => new
                 {
-                    IdPropertyImage = table.Column<int>(type: "int", nullable: false),
+                    IdPropertyImage = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IdProperty = table.Column<int>(type: "int", nullable: false),
                     File = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Enabled = table.Column<bool>(type: "bit", nullable: false)
@@ -81,7 +84,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "PropertyTrace",
                 columns: table => new
                 {
-                    IdPropertyTrace = table.Column<int>(type: "int", nullable: false),
+                    IdPropertyTrace = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NameClient = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Value = table.Column<double>(type: "float(28)", precision: 28, scale: 6, nullable: false),

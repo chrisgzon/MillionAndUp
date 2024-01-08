@@ -22,7 +22,7 @@ BEGIN TRANSACTION;
 GO
 
 CREATE TABLE [Owner] (
-    [IdOwner] int NOT NULL,
+    [IdOwner] int NOT NULL IDENTITY,
     [Name] nvarchar(250) NOT NULL,
     [Address_City] nvarchar(150) NOT NULL,
     [Address_State] nvarchar(150) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE [Owner] (
 GO
 
 CREATE TABLE [Property] (
-    [IdProperty] int NOT NULL,
+    [IdProperty] int NOT NULL IDENTITY,
     [Name] nvarchar(250) NOT NULL,
     [Address_City] nvarchar(150) NOT NULL,
     [Address_State] nvarchar(150) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE [Property] (
 GO
 
 CREATE TABLE [PropertyImage] (
-    [IdPropertyImage] int NOT NULL,
+    [IdPropertyImage] int NOT NULL IDENTITY,
     [IdProperty] int NOT NULL,
     [File] nvarchar(250) NOT NULL,
     [Enabled] bit NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE [PropertyImage] (
 GO
 
 CREATE TABLE [PropertyTrace] (
-    [IdPropertyTrace] int NOT NULL,
+    [IdPropertyTrace] int NOT NULL IDENTITY,
     [Date] datetime2 NOT NULL,
     [NameClient] nvarchar(250) NOT NULL,
     [Value] float(28) NOT NULL,
@@ -86,7 +86,7 @@ CREATE INDEX [IX_PropertyTrace_IdProperty] ON [PropertyTrace] ([IdProperty]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20240107195834_initialMigration', N'6.0.25');
+VALUES (N'20240108020738_initialMigration', N'6.0.25');
 GO
 
 COMMIT;

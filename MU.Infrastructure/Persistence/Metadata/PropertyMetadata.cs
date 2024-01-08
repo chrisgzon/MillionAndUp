@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MU.Domain.Entities;
 using MU.Domain.Entities.Owners;
-using MU.Domain.Entities.Properties;
 using MU.Domain.ValueObjects;
 
 namespace MU.Infrastructure.Metadata
@@ -13,16 +13,10 @@ namespace MU.Infrastructure.Metadata
             builder.ToTable("Property").HasKey(p => p.IdProperty);
 
             #region table properties
-            builder.Property(p => p.IdProperty).HasConversion(
-                propertyId => propertyId.Value,
-                value => new PropertyId(value));
+            builder.Property(p => p.IdProperty).ValueGeneratedOnAdd();
             builder.Property(p => p.CodeInternal).HasMaxLength(50).IsRequired();
             builder.Property(p => p.PriceSale).HasPrecision(28, 6);
             builder.Property(p => p.Name).HasMaxLength(250);
-            builder.Property(p => p.IdOwner).HasConversion(
-                ownerId => ownerId.Value,
-                value => new OwnerId(value)
-            );
 
             builder.Property(p => p.CodeInternal).HasConversion(
                 codeInternal => codeInternal.Value,

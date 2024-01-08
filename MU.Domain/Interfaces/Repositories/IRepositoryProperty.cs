@@ -1,10 +1,9 @@
-﻿using MU.Domain.Entities.Properties;
-using MU.Domain.Interfaces;
+﻿using MU.Domain.Interfaces;
 
 namespace MU.Domain.Entities.Properties
 {
     public interface IRepositoryProperty
-        : ICreate<Property>, IUpdate<Property>, IList<Property, PropertyId>
+        : ICreate<Property>, IUpdate<Property>, IList<Property, int>
     {
         Task ChangePrice(Property entity);
         Task<List<Property>> ListByFilters(Property entity);

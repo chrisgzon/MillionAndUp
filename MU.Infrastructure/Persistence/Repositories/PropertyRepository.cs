@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MU.Domain.Entities;
 using MU.Domain.Entities.Properties;
 using MU.Infrastructure.Contexts;
 
@@ -28,7 +29,7 @@ namespace MU.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.SingleOrDefaultAsync(p => p.IdProperty == entityId);
+        public async Task<Property?> SearchByIdAsync(int entityId) => await _muContext.Properties.SingleOrDefaultAsync(p => p.IdProperty == entityId);
 
         public Task Update(Property entity)
         {

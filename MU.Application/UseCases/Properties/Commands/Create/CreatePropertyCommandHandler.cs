@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MU.Domain.Entities;
 using MU.Domain.Entities.Owners;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Primitives;
@@ -14,7 +15,7 @@ namespace MU.Application.UseCases.Properties.Commands.Create
         public CreatePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork)
         {
             _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
-            _unitOfWork = _unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public async Task<Unit> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
@@ -30,13 +31,12 @@ namespace MU.Application.UseCases.Properties.Commands.Create
             }
 
             Property Property = new Property(
-                new PropertyId(0),
                 request.Name,
                 address,
                 request.PriceSale,
                 internalCode,
                 request.YearBuild,
-                new OwnerId(request.IdOwner),
+                request.IdOwner,
                 request.Enabled);
 
             await _repositoryProperty.Create(Property);

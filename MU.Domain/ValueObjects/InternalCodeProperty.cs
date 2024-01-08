@@ -15,8 +15,8 @@ namespace MU.Domain.ValueObjects
                 return null;
             }
 
-            string currentDate = DateTime.Now.Date.ToString("yyyyMMddHHmmss");
-            return new InternalCodeProperty(String.Format("{0}-{1}-{2}-{3}", InitialCode, ReplaceCharactersRegex().Replace(nameProperty, "").Substring(MinLengthName).ToUpper(), year.ToString(), currentDate));
+            string currentDate = DateTime.Now.ToString("yyyyMMddHHmmss");
+            return new InternalCodeProperty(String.Format("{0}-{1}-{2}-{3}", InitialCode, ReplaceCharactersRegex().Replace(nameProperty, "").Substring(0, MinLengthName).ToUpper(), year.ToString(), currentDate));
         }
         public static InternalCodeProperty? SetInternalCode(string internalCode)
         {

@@ -25,7 +25,10 @@ namespace MU.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("MU.Domain.Entities.Owners.Owner", b =>
                 {
                     b.Property<int>("IdOwner")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOwner"), 1L, 1);
 
                     b.Property<DateTime>("Birthay")
                         .HasColumnType("datetime2");
@@ -48,10 +51,13 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.ToTable("Owner", (string)null);
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.Properties.Property", b =>
+            modelBuilder.Entity("MU.Domain.Entities.Property", b =>
                 {
                     b.Property<int>("IdProperty")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProperty"), 1L, 1);
 
                     b.Property<string>("CodeInternal")
                         .IsRequired()
@@ -83,10 +89,13 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.ToTable("Property", (string)null);
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.PropertyImages.PropertyImage", b =>
+            modelBuilder.Entity("MU.Domain.Entities.PropertyImage", b =>
                 {
                     b.Property<int>("IdPropertyImage")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPropertyImage"), 1L, 1);
 
                     b.Property<bool>("Enabled")
                         .HasColumnType("bit");
@@ -106,10 +115,13 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.ToTable("PropertyImage", (string)null);
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.PropertyTraces.PropertyTrace", b =>
+            modelBuilder.Entity("MU.Domain.Entities.PropertyTrace", b =>
                 {
                     b.Property<int>("IdPropertyTrace")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPropertyTrace"), 1L, 1);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -181,7 +193,7 @@ namespace MU.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.Properties.Property", b =>
+            modelBuilder.Entity("MU.Domain.Entities.Property", b =>
                 {
                     b.HasOne("MU.Domain.Entities.Owners.Owner", "Owner")
                         .WithMany("Properties")
@@ -233,9 +245,9 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.PropertyImages.PropertyImage", b =>
+            modelBuilder.Entity("MU.Domain.Entities.PropertyImage", b =>
                 {
-                    b.HasOne("MU.Domain.Entities.Properties.Property", "Property")
+                    b.HasOne("MU.Domain.Entities.Property", "Property")
                         .WithMany("PropertyImages")
                         .HasForeignKey("IdProperty")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -244,9 +256,9 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.Navigation("Property");
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.PropertyTraces.PropertyTrace", b =>
+            modelBuilder.Entity("MU.Domain.Entities.PropertyTrace", b =>
                 {
-                    b.HasOne("MU.Domain.Entities.Properties.Property", "Property")
+                    b.HasOne("MU.Domain.Entities.Property", "Property")
                         .WithMany("PropertyTraces")
                         .HasForeignKey("IdProperty")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -260,7 +272,7 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.Navigation("Properties");
                 });
 
-            modelBuilder.Entity("MU.Domain.Entities.Properties.Property", b =>
+            modelBuilder.Entity("MU.Domain.Entities.Property", b =>
                 {
                     b.Navigation("PropertyImages");
 

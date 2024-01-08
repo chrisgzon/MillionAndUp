@@ -1,12 +1,11 @@
 ﻿using MU.Domain.Primitives;
 using MU.Domain.ValueObjects;
-using MU.Domain.Entities.Properties;
 
 namespace MU.Domain.Entities.Owners
 {
-    public class Owner
+    public class Owner : AggregateRoot
     {
-        public Owner(OwnerId idOwner, string name, Address address, string photo, DateTime birthay, bool enabled)
+        public Owner(int idOwner, string name, Address address, string photo, DateTime birthay, bool enabled)
         {
             IdOwner = idOwner;
             Name = name;
@@ -18,7 +17,7 @@ namespace MU.Domain.Entities.Owners
 
         private Owner() {}
 
-        public OwnerId IdOwner { get; private set; }
+        public int IdOwner { get; private set; }
         public string Name { get; private set; } = string.Empty;
         public Address Address { get; private set; }
         public string Photo { get; private set; } = string.Empty;
