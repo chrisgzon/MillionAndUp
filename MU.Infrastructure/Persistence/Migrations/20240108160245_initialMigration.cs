@@ -13,7 +13,7 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "Owner",
                 columns: table => new
                 {
-                    IdOwner = table.Column<int>(type: "int", nullable: false),
+                    IdOwner = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Address_City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Address_State = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -33,7 +33,7 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "Property",
                 columns: table => new
                 {
-                    IdProperty = table.Column<int>(type: "int", nullable: false),
+                    IdProperty = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Address_City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Address_State = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -43,7 +43,7 @@ namespace MU.Infrastructure.Persistence.Migrations
                     PriceSale = table.Column<double>(type: "float(28)", precision: 28, scale: 6, nullable: false),
                     CodeInternal = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     YearBuild = table.Column<int>(type: "int", nullable: false),
-                    IdOwner = table.Column<int>(type: "int", nullable: false),
+                    IdOwner = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Enabled = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -61,8 +61,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "PropertyImage",
                 columns: table => new
                 {
-                    IdPropertyImage = table.Column<int>(type: "int", nullable: false),
-                    IdProperty = table.Column<int>(type: "int", nullable: false),
+                    IdPropertyImage = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdProperty = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     File = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Enabled = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -81,12 +81,12 @@ namespace MU.Infrastructure.Persistence.Migrations
                 name: "PropertyTrace",
                 columns: table => new
                 {
-                    IdPropertyTrace = table.Column<int>(type: "int", nullable: false),
+                    IdPropertyTrace = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NameClient = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Value = table.Column<double>(type: "float(28)", precision: 28, scale: 6, nullable: false),
                     Tax = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    IdProperty = table.Column<int>(type: "int", nullable: false)
+                    IdProperty = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {

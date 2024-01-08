@@ -20,6 +20,9 @@ namespace MU.Domain.Entities.Properties
             YearBuild = yearBuild;
             IdOwner = idOwner;
             Enabled = enabled;
+
+            PropertyImages = new List<PropertyImage>();
+            PropertyTraces = new List<PropertyTrace>();
         }
 
         private Property() { }
@@ -34,20 +37,20 @@ namespace MU.Domain.Entities.Properties
         public bool Enabled { get; private set; }
 
         public virtual Owner? Owner { get; private set; }
-        public virtual ICollection<PropertyImage>? PropertyImages { get; private set; }
-        public virtual ICollection<PropertyTrace>? PropertyTraces { get; private set; }
+        public virtual ICollection<PropertyImage> PropertyImages { get; private set; }
+        public virtual ICollection<PropertyTrace> PropertyTraces { get; private set; }
 
         public void SetOwner(Owner owner)
         {
             Owner = owner;
         }
-        public void SetPropertyImages(List<PropertyImage> propertyImages)
+        public void AddPropertyImage(PropertyImage propertyImage)
         {
-            PropertyImages = propertyImages;
+            PropertyImages.Add(propertyImage);
         }
-        public void SetPropertyTraces(List<PropertyTrace> propertyTraces)
+        public void AddPropertyTrace(PropertyTrace propertyTrace)
         {
-            PropertyTraces = propertyTraces;
+            PropertyTraces.Add(propertyTrace);
         }
     }
 }

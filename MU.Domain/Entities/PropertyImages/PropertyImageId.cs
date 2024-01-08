@@ -1,4 +1,4 @@
 ﻿namespace MU.Domain.Entities.PropertyImages
 {
-    public record PropertyImageId(int Value);
+    public record PropertyImageId(Guid Value);
 }

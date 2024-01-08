@@ -1,4 +1,4 @@
 ﻿namespace MU.Domain.Entities.Owners
 {
-    public record OwnerId(int Value);
+    public record OwnerId(Guid Value);
 }

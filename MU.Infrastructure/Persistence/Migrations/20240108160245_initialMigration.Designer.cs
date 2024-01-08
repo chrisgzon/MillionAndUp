@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MU.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(MUContext))]
-    [Migration("20240107195834_initialMigration")]
+    [Migration("20240108160245_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,8 @@ namespace MU.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("MU.Domain.Entities.Owners.Owner", b =>
                 {
-                    b.Property<int>("IdOwner")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdOwner")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Birthay")
                         .HasColumnType("datetime2");
@@ -52,8 +52,8 @@ namespace MU.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("MU.Domain.Entities.Properties.Property", b =>
                 {
-                    b.Property<int>("IdProperty")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdProperty")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CodeInternal")
                         .IsRequired()
@@ -63,8 +63,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                     b.Property<bool>("Enabled")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IdOwner")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdOwner")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -87,8 +87,8 @@ namespace MU.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("MU.Domain.Entities.PropertyImages.PropertyImage", b =>
                 {
-                    b.Property<int>("IdPropertyImage")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdPropertyImage")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Enabled")
                         .HasColumnType("bit");
@@ -98,8 +98,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("IdProperty")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdProperty")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdPropertyImage");
 
@@ -110,14 +110,14 @@ namespace MU.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("MU.Domain.Entities.PropertyTraces.PropertyTrace", b =>
                 {
-                    b.Property<int>("IdPropertyTrace")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdPropertyTrace")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdProperty")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdProperty")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NameClient")
                         .IsRequired()
@@ -143,8 +143,8 @@ namespace MU.Infrastructure.Persistence.Migrations
                 {
                     b.OwnsOne("MU.Domain.ValueObjects.Address", "Address", b1 =>
                         {
-                            b1.Property<int>("OwnerIdOwner")
-                                .HasColumnType("int");
+                            b1.Property<Guid>("OwnerIdOwner")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("City")
                                 .IsRequired()
@@ -193,8 +193,8 @@ namespace MU.Infrastructure.Persistence.Migrations
 
                     b.OwnsOne("MU.Domain.ValueObjects.Address", "Address", b1 =>
                         {
-                            b1.Property<int>("PropertyIdProperty")
-                                .HasColumnType("int");
+                            b1.Property<Guid>("PropertyIdProperty")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("City")
                                 .IsRequired()

@@ -14,7 +14,7 @@ namespace MU.Application.UseCases.Properties.Commands.Create
         public CreatePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork)
         {
             _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
-            _unitOfWork = _unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public async Task<Unit> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
@@ -30,7 +30,7 @@ namespace MU.Application.UseCases.Properties.Commands.Create
             }
 
             Property Property = new Property(
-                new PropertyId(0),
+                new PropertyId(Guid.NewGuid()),
                 request.Name,
                 address,
                 request.PriceSale,

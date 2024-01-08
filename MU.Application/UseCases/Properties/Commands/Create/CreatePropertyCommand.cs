@@ -11,6 +11,6 @@ namespace MU.Application.UseCases.Properties.Commands.Create
         string ZipCode,
         double PriceSale,
         int YearBuild,
-        int IdOwner,
+        Guid IdOwner,
         bool Enabled) : IRequest<Unit>;
 }
