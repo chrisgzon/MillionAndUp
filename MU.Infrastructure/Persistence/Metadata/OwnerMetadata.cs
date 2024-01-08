@@ -12,7 +12,9 @@ namespace MU.Infrastructure.Metadata
             builder.ToTable("Owner").HasKey(o => o.IdOwner);
 
             #region table properties
-            builder.Property(o => o.IdOwner).ValueGeneratedOnAdd();
+            builder.Property(o => o.IdOwner).HasConversion(
+                ownerId => ownerId.Value,
+                value => new OwnerId(value));
             builder.Property(o => o.Name).HasMaxLength(250);
             builder.Property(o => o.Photo).HasMaxLength(250);
 

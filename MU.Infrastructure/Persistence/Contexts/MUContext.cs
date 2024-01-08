@@ -1,12 +1,15 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MU.Domain.Entities;
 using MU.Domain.Entities.Owners;
+using MU.Domain.Entities.Properties;
+using MU.Domain.Entities.PropertyImages;
+using MU.Domain.Entities.PropertyTraces;
+using MU.Domain.Primitives;
 using MU.Infrastructure.Metadata;
 
 namespace MU.Infrastructure.Contexts
 {
-    public class MUContext : DbContext
+    public class MUContext : DbContext, IUnitOfWork
     {
         private readonly IPublisher _publisher;
         #region tables

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MU.Domain.Entities;
+using MU.Domain.Entities.Properties;
+using MU.Domain.Entities.PropertyImages;
 
 namespace MU.Infrastructure.Metadata
 {
@@ -11,7 +12,12 @@ namespace MU.Infrastructure.Metadata
             builder.ToTable("PropertyImage").HasKey(p => p.IdPropertyImage);
 
             #region table properties
-            builder.Property(p => p.IdPropertyImage).ValueGeneratedOnAdd();
+            builder.Property(p => p.IdPropertyImage).HasConversion(
+                propertyImageId => propertyImageId.Value,
+                value => new PropertyImageId(value));
+            builder.Property(p => p.IdProperty).HasConversion(
+                propertyId => propertyId.Value,
+                value => new PropertyId(value));
             builder.Property(p => p.File).HasMaxLength(250);
             #endregion table properties
 

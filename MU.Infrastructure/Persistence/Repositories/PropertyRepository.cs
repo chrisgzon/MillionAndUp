@@ -24,7 +24,7 @@ namespace MU.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Property?> SearchByIdAsync(int entityId) => await _muContext.Properties.SingleOrDefaultAsync(p => p.IdProperty == entityId);
+        public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.SingleOrDefaultAsync(p => p.IdProperty == entityId);
 
         public void Update(Property entity)
         {

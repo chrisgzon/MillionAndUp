@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MU.Application.UseCases.Properties.Commands.Create;
+using MU.WebApi.Common;
 
 namespace MU.WebApi.Controllers
 {

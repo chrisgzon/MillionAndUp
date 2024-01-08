@@ -1,14 +1,12 @@
 IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'MillionAndUp')
 BEGIN
-CREATE DATABASE [MillionAndUp]
-
-
+    CREATE DATABASE [MillionAndUp]
 END
 GO
     USE [MillionAndUp]
 GO
 
- IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
     CREATE TABLE [__EFMigrationsHistory] (
         [MigrationId] nvarchar(150) NOT NULL,
@@ -86,7 +84,7 @@ CREATE INDEX [IX_PropertyTrace_IdProperty] ON [PropertyTrace] ([IdProperty]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20240108160245_initialMigration', N'6.0.25');
+VALUES (N'20240108212006_initialMigration', N'6.0.25');
 GO
 
 COMMIT;
