@@ -14,21 +14,15 @@ namespace MU.Infrastructure.Repositories
 
         public async Task CreateAsync(Property entity) => await _muContext.Properties.AddAsync(entity);
 
-        public Task<List<Property>> ListAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<Property>> ListAsync() => await _muContext.Properties.Include(p => p.Owner).ToListAsync();
 
         public Task<List<Property>> ListByFiltersAsync(Property entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.SingleOrDefaultAsync(p => p.IdProperty == entityId);
+        public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.Include(p => p.Owner).SingleOrDefaultAsync(p => p.IdProperty == entityId);
 
-        public void Update(Property entity)
-        {
-            throw new NotImplementedException();
-        }
+        public void Update(Property entity) => _muContext.Properties.Update(entity);
     }
 }

@@ -52,5 +52,14 @@ namespace MU.Domain.Entities.Properties
         {
             PropertyTraces.Add(propertyTrace);
         }
+
+        public void ChangePrice(double newPrice)
+        {
+            if (PriceSale != newPrice)
+            {
+                PriceSale = newPrice;
+                //TODO: Add domain event
+            }
+        }
     }
 }

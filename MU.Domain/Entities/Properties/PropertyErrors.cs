@@ -18,5 +18,10 @@ namespace MU.Domain.Entities.Properties
             code: "Property.IdOwner",
             description: "Owner not found, please review the identifier sended."
         );
+
+        public static Error propertyNotFound { get; } = Error.NotFound(
+            code: "Property.IdProperty",
+            description: "property not found, please review the identifier sended."
+        );
     }
 }
