@@ -14,7 +14,7 @@ namespace MU.Infrastructure.Repositories
 
         public async Task CreateAsync(Property entity) => await _muContext.Properties.AddAsync(entity);
 
-        public Task<Property> ListAsync()
+        public Task<List<Property>> ListAsync()
         {
             throw new NotImplementedException();
         }

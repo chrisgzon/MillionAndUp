@@ -19,7 +19,7 @@ namespace MU.Infrastructure.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Owner> ListAsync()
+        public Task<List<Owner>> ListAsync()
         {
             throw new NotImplementedException();
         }
