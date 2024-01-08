@@ -1,6 +1,7 @@
 using MU.Application;
 using MU.Infrastructure;
 using MU.WebApi;
+using MU.WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<GloblalExceptionHandlingMiddleware>();
 
 app.UseAuthorization();
 app.MapControllers();
