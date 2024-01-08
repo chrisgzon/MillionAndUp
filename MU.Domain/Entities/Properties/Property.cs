@@ -44,10 +44,12 @@ namespace MU.Domain.Entities.Properties
         {
             Owner = owner;
         }
+
         public void AddPropertyImage(PropertyImage propertyImage)
         {
             PropertyImages.Add(propertyImage);
         }
+
         public void AddPropertyTrace(PropertyTrace propertyTrace)
         {
             PropertyTraces.Add(propertyTrace);
@@ -58,6 +60,25 @@ namespace MU.Domain.Entities.Properties
             if (PriceSale != newPrice)
             {
                 PriceSale = newPrice;
+                //TODO: Add domain event
+            }
+        }
+
+        public void Update(string nameProperty, int year)
+        {
+            if (Name == nameProperty && year == YearBuild)
+                return;
+
+            Name = nameProperty;
+            YearBuild = year;
+            //TODO: Add domain event
+        }
+
+        public void ChangeAddress(Address newAddress)
+        {
+            if (Address != newAddress)
+            {
+                Address = newAddress;
                 //TODO: Add domain event
             }
         }

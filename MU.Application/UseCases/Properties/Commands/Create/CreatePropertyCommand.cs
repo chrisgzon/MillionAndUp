@@ -13,5 +13,5 @@ namespace MU.Application.UseCases.Properties.Commands.Create
         double PriceSale,
         int YearBuild,
         Guid IdOwner,
-        bool Enabled) : IRequest<ErrorOr<Unit>>;
+        bool Enabled) : IRequest<ErrorOr<Guid>>;
 }

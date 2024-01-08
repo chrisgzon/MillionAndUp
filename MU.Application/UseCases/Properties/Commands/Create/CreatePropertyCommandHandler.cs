@@ -9,7 +9,7 @@ using MU.Domain.ValueObjects;
 
 namespace MU.Application.UseCases.Properties.Commands.Create
 {
-    internal sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, ErrorOr<Unit>>
+    internal sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, ErrorOr<Guid>>
     {
         private readonly IRepositoryOwner _ownerRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -20,7 +20,7 @@ namespace MU.Application.UseCases.Properties.Commands.Create
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<ErrorOr<Unit>> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Guid>> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
         {
             if (Address.Create(request.City, request.State, request.Line1, request.Line2, request.ZipCode) is not Address address)
             {
@@ -52,7 +52,7 @@ namespace MU.Application.UseCases.Properties.Commands.Create
             _ownerRepository.Update(owner);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return Unit.Value;
+            return Property.IdProperty.Value;
         }
     }
 }
