@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MU.Domain.Entities.Properties;
+using MU.Domain.Interfaces.Repositories;
 using MU.Domain.Primitives;
 using MU.Infrastructure.Contexts;
+using MU.Infrastructure.Persistence.Repositories;
 using MU.Infrastructure.Repositories;
 
 namespace MU.Infrastructure
@@ -23,6 +25,7 @@ namespace MU.Infrastructure
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<MUContext>());
 
             services.AddScoped<IRepositoryProperty, PropertyRepository>();
+            services.AddScoped<IRepositoryOwner, OwnerRepository>();
             return services;
         }
     }

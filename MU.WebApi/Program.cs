@@ -1,6 +1,7 @@
 using MU.Application;
 using MU.Infrastructure;
 using MU.WebApi;
+using MU.WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler("/error");
+
+app.UseMiddleware<GloblalExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

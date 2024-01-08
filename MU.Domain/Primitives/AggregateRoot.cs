@@ -1,12 +1,14 @@
-﻿namespace MU.Domain.Primitives
+﻿using MediatR;
+
+namespace MU.Domain.Primitives
 {
     public abstract class AggregateRoot
     {
-        private readonly List<DomainEvent> _domainEvents = new();
+        private readonly List<INotification> _domainEvents = new();
 
-        public ICollection<DomainEvent> GetDomainEvents() => _domainEvents;
+        public ICollection<INotification> GetDomainEvents() => _domainEvents;
 
-        protected void Raise(DomainEvent domainEvent)
+        protected void Raise(INotification domainEvent)
         {
             _domainEvents.Add(domainEvent);
         }

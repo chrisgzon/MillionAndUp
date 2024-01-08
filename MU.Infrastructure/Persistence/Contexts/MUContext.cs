@@ -39,7 +39,7 @@ namespace MU.Infrastructure.Contexts
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            IEnumerable<DomainEvent> domainEvents = ChangeTracker.Entries<AggregateRoot>()
+            IEnumerable<INotification> domainEvents = ChangeTracker.Entries<AggregateRoot>()
                 .Select(e => e.Entity)
                 .Where(e => e.GetDomainEvents().Any())
                 .SelectMany(e => e.GetDomainEvents());

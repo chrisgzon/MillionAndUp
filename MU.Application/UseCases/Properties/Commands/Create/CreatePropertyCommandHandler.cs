@@ -1,32 +1,40 @@
-﻿using MediatR;
+﻿using ErrorOr;
+using MediatR;
 using MU.Domain.Entities.Owners;
 using MU.Domain.Entities.Properties;
+using MU.Domain.Interfaces.Repositories;
 using MU.Domain.Primitives;
 using MU.Domain.ValueObjects;
 
 namespace MU.Application.UseCases.Properties.Commands.Create
 {
-    internal sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, Unit>
+    internal sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, ErrorOr<Unit>>
     {
-        private readonly IRepositoryProperty _repositoryProperty;
+        private readonly IRepositoryOwner _ownerRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreatePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork)
+        public CreatePropertyCommandHandler(IRepositoryOwner ownerRepository, IUnitOfWork unitOfWork)
         {
-            _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
+            _ownerRepository = ownerRepository ?? throw new ArgumentNullException(nameof(ownerRepository));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<Unit> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Unit>> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
         {
             if (Address.Create(request.City, request.State, request.Line1, request.Line2, request.ZipCode) is not Address address)
             {
-                throw new ArgumentException(nameof(address));
+                return PropertyErrors.AddressWithBadFormat;
             }
 
             if (InternalCodeProperty.Create(request.Name, request.YearBuild) is not InternalCodeProperty internalCode)
             {
-                throw new ArgumentException(nameof(internalCode));
+                return PropertyErrors.cannotCreateCodeInternal;
+            }
+
+            Owner? owner = await _ownerRepository.SearchByIdAsync(new OwnerId(request.IdOwner));
+            if (owner is null)
+            {
+                return PropertyErrors.ownerNotFound;
             }
 
             Property Property = new Property(
@@ -39,7 +47,8 @@ namespace MU.Application.UseCases.Properties.Commands.Create
                 new OwnerId(request.IdOwner),
                 request.Enabled);
 
-            await _repositoryProperty.Create(Property);
+            owner.AddPropertie(Property);
+            _ownerRepository.Update(owner);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

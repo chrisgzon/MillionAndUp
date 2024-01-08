@@ -2,6 +2,6 @@
 {
     public interface ICreate<TEntity>
     {
-        Task Create(TEntity entity);
+        Task CreateAsync(TEntity entity);
     }
 }

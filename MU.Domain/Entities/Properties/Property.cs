@@ -36,9 +36,9 @@ namespace MU.Domain.Entities.Properties
         public OwnerId IdOwner { get; private set; }
         public bool Enabled { get; private set; }
 
-        public virtual Owner? Owner { get; private set; }
-        public virtual ICollection<PropertyImage> PropertyImages { get; private set; }
-        public virtual ICollection<PropertyTrace> PropertyTraces { get; private set; }
+        public Owner? Owner { get; private set; }
+        public ICollection<PropertyImage> PropertyImages { get; private set; }
+        public ICollection<PropertyTrace> PropertyTraces { get; private set; }
 
         public void SetOwner(Owner owner)
         {

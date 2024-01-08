@@ -29,7 +29,7 @@ namespace MU.Infrastructure.Metadata
             #endregion table properties
 
             #region relationships
-            builder.HasMany(e => e.Properties).WithOne(e => e.Owner).HasForeignKey(e => e.IdOwner).IsRequired();
+            builder.HasMany(e => e._properties).WithOne(e => e.Owner).HasForeignKey(e => e.IdOwner).IsRequired();
             #endregion relationships
         }
     }

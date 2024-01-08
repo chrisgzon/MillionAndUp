@@ -40,7 +40,7 @@ namespace MU.Infrastructure.Metadata
             #endregion table properties
 
             #region relationships
-            builder.HasOne(p => p.Owner).WithMany(o => o.Properties).HasForeignKey(p => p.IdOwner).IsRequired();
+            builder.HasOne(p => p.Owner).WithMany(o => o._properties).HasForeignKey(p => p.IdOwner).IsRequired();
             builder.HasMany(p => p.PropertyImages).WithOne(i => i.Property).HasForeignKey(p => p.IdProperty);
             builder.HasMany(p => p.PropertyTraces).WithOne(i => i.Property).HasForeignKey(p => p.IdProperty);
             #endregion relationships
