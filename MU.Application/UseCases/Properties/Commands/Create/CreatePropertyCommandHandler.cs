@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
-using MU.Domain.Entities.Owners;
+using MU.Domain.Entities;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Interfaces.Repositories;
 using MU.Domain.Primitives;

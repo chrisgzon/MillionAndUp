@@ -1,5 +1,3 @@
-
-
 IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'MillionAndUp')
 BEGIN
 CREATE DATABASE [MillionAndUp]

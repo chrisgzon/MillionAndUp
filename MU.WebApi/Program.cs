@@ -21,9 +21,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionHandler("/error");
 
-app.UseMiddleware<GloblalExceptionHandlingMiddleware>();
-
 app.UseHttpsRedirection();
+
+app.UseMiddleware<GloblalExceptionHandlingMiddleware>();
 
 app.UseAuthorization();
 app.MapControllers();
