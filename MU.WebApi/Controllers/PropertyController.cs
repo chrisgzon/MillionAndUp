@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MU.Application.UseCases.Properties.Commands.Create;
+using MU.Application.UseCases.Properties.Queries.List;
 
 namespace MU.WebApi.Controllers
 {
@@ -20,6 +21,12 @@ namespace MU.WebApi.Controllers
         public async Task<IActionResult> Create([FromBody] CreatePropertyCommand request)
         {
             var createPropertyResult = await _mediator.Send(request);
+            return Ok(createPropertyResult);
+        }
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var createPropertyResult = await _mediator.Send(new ListPropertiesQuery());
             return Ok(createPropertyResult);
         }
     }

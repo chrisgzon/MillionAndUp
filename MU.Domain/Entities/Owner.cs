@@ -1,34 +1,16 @@
-﻿using MU.Domain.Primitives;
-using MU.Domain.ValueObjects;
+﻿using MU.Domain.ValueObjects;
 
 namespace MU.Domain.Entities.Owners
 {
-    public class Owner : AggregateRoot
+    public class Owner
     {
-        public Owner(int idOwner, string name, Address address, string photo, DateTime birthay, bool enabled)
-        {
-            IdOwner = idOwner;
-            Name = name;
-            Address = address;
-            Photo = photo;
-            Birthay = birthay;
-            Enabled = enabled;
-        }
+        public int IdOwner { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public Address? Address { get; set; }
+        public string Photo { get; set; } = string.Empty;
+        public DateTime Birthay { get; set; }
+        public bool Enabled { get; set; }
 
-        private Owner() {}
-
-        public int IdOwner { get; private set; }
-        public string Name { get; private set; } = string.Empty;
-        public Address Address { get; private set; }
-        public string Photo { get; private set; } = string.Empty;
-        public DateTime Birthay { get; private set; }
-        public bool Enabled { get; private set; }
-
-        public virtual ICollection<Property> Properties { get; private set; } = new List<Property>();
-
-        public void SetProperties(List<Property> properties)
-        {
-            Properties = properties;
-        }
+        public virtual ICollection<Property> Properties { get; set; } = new List<Property>();
     }
 }

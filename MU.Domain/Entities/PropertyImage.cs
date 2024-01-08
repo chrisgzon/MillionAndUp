@@ -2,21 +2,11 @@
 {
     public class PropertyImage
     {
-        public PropertyImage(int idPropertyImage, int idProperty, string file, bool enabled, Property property)
-        {
-            IdPropertyImage = idPropertyImage;
-            IdProperty = idProperty;
-            File = file;
-            Enabled = enabled;
-            Property = property;
-        }
-
-        private PropertyImage() { }
-        public int IdPropertyImage { get; private set; }
-        public int IdProperty { get; private set; }
+        public int IdPropertyImage { get; set; }
+        public int IdProperty { get; set; }
         public string File { get; set; } = string.Empty;
-        public bool Enabled { get; private set; }
+        public bool Enabled { get; set; }
 
-        public virtual Property? Property { get; private set; }
+        public virtual Property? Property { get; set; }
     }
 }

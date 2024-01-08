@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using MU.Domain.Entities;
-using MU.Domain.Entities.Owners;
 using MU.Domain.Entities.Properties;
-using MU.Domain.Primitives;
 using MU.Domain.ValueObjects;
 
 namespace MU.Application.UseCases.Properties.Commands.Create
@@ -10,12 +8,10 @@ namespace MU.Application.UseCases.Properties.Commands.Create
     internal sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, Unit>
     {
         private readonly IRepositoryProperty _repositoryProperty;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public CreatePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork)
+        public CreatePropertyCommandHandler(IRepositoryProperty repositoryProperty)
         {
             _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public async Task<Unit> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
@@ -30,18 +26,19 @@ namespace MU.Application.UseCases.Properties.Commands.Create
                 throw new ArgumentException(nameof(internalCode));
             }
 
-            Property Property = new Property(
-                request.Name,
-                address,
-                request.PriceSale,
-                internalCode,
-                request.YearBuild,
-                request.IdOwner,
-                request.Enabled);
+            Property Property = new Property
+            {
+                Address = address,
+                CodeInternal = internalCode,
+                Enabled = request.Enabled,
+                IdOwner = request.IdOwner,
+                IdProperty = request.IdProperty,
+                Name = request.Name,
+                PriceSale = request.PriceSale,
+                YearBuild = request.YearBuild,
+            };
 
             await _repositoryProperty.Create(Property);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-
             return Unit.Value;
         }
     }

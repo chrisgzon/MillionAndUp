@@ -2,12 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using MU.Domain.Entities;
 using MU.Domain.Entities.Owners;
-using MU.Domain.Primitives;
 using MU.Infrastructure.Metadata;
 
 namespace MU.Infrastructure.Contexts
 {
-    public class MUContext : DbContext, IUnitOfWork
+    public class MUContext : DbContext
     {
         private readonly IPublisher _publisher;
         #region tables
@@ -34,22 +33,5 @@ namespace MU.Infrastructure.Contexts
             modelBuilder.ApplyConfiguration(new PropertyTraceMetadata());
         }
         #endregion configuration
-
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        {
-            IEnumerable<INotification> domainEvents = ChangeTracker.Entries<AggregateRoot>()
-                .Select(e => e.Entity)
-                .Where(e => e.GetDomainEvents().Any())
-                .SelectMany(e => e.GetDomainEvents());
-
-            int result = await base.SaveChangesAsync(cancellationToken);
-
-            foreach (var domainEvent in domainEvents)
-            {
-                await _publisher.Publish(domainEvent, cancellationToken);
-            }
-
-            return result;
-        }
     }
 }

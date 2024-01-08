@@ -19,9 +19,20 @@ namespace MU.Infrastructure.Repositories
 
         public async Task Create(Property entity) => await _muContext.Properties.AddAsync(entity);
 
-        public Task<Property> List()
+        public async Task<ICollection<Property>> ListAsync()
         {
-            throw new NotImplementedException();
+            return await _muContext.Properties.Select(p => new Property
+            {
+                Name = p.Name,
+                IdProperty = p.IdProperty,
+                Owner = p.Owner,
+                Address = Domain.ValueObjects.Address.Create(p.Address.City, p.Address.State, p.Address.Line1, p.Address.Line2, p.Address.ZipCode),
+                CodeInternal = p.CodeInternal,
+                Enabled = p.Enabled,
+                IdOwner = p.IdOwner,
+                PriceSale = p.PriceSale,
+                YearBuild = p.YearBuild,
+            }).Take(30).ToListAsync();
         }
 
         public Task<List<Property>> ListByFilters(Property entity)
