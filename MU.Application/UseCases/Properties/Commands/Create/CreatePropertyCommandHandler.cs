@@ -27,6 +27,11 @@ namespace MU.Application.UseCases.Properties.Commands.Create
                 return PropertyErrors.AddressWithBadFormat;
             }
 
+            if (request.YearBuild > DateTime.Now.Year)
+            {
+                return PropertyErrors.YearMaxIsCurrent;
+            }
+
             if (InternalCodeProperty.Create(request.Name, request.YearBuild) is not InternalCodeProperty internalCode)
             {
                 return PropertyErrors.cannotCreateCodeInternal;

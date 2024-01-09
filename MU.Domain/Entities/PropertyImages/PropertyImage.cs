@@ -19,7 +19,7 @@ namespace MU.Domain.Entities.PropertyImages
 
         public PropertyImageId IdPropertyImage { get; private set; }
         public PropertyId IdProperty { get; private set; }
-        public string File { get; private set; } = string.Empty; // set only name of file
+        public string File { get; private set; } = string.Empty; // set path complete of file
         public bool Enabled { get; private set; }
 
         public string? PathFolder {  get; private set; }

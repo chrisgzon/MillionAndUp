@@ -25,7 +25,14 @@ namespace MU.Application.UseCases.Properties.Queries.SearchPropertyById
                 Property.YearBuild,
                 Property.Address.AddressString,
                 Property.CodeInternal.Value,
-                Property.IdOwner.Value);
+                Property.Enabled,
+                Property.IdOwner.Value,
+                Property.PropertyImages.Select(i => new PropertyImageResponse(
+                    i.IdPropertyImage.Value,
+                    i.IdProperty.Value,
+                    i.File,
+                    i.Enabled)).ToList()
+                );
         }
     }
 }

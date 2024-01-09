@@ -17,8 +17,7 @@ namespace MU.Infrastructure.Services.ImageStorage
                 Directory.CreateDirectory(pathDirectory);
             }
 
-            string exactPath = Path.Combine(pathDirectory, nameFile);
-            await File.WriteAllBytesAsync(exactPath, fileData);
+            await File.WriteAllBytesAsync(nameFile, fileData);
         }
     }
 }

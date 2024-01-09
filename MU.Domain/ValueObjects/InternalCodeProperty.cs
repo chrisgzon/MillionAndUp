@@ -12,7 +12,7 @@ namespace MU.Domain.ValueObjects
         public static explicit operator string(InternalCodeProperty codeInternal) => codeInternal.Value;
         public static InternalCodeProperty? Create(string nameProperty, int year)
         {
-            if (String.IsNullOrEmpty(nameProperty) || year == 0 || nameProperty.Length < MinLengthName)
+            if (String.IsNullOrEmpty(nameProperty) || year == 0 || year > DateTime.Now.Year || nameProperty.Length < MinLengthName)
             {
                 return null;
             }

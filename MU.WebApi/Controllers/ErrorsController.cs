@@ -5,6 +5,9 @@ namespace MU.WebApi.Controllers
 {
     public class ErrorsControler : ControllerBase
     {
+        /// <summary>
+        /// retrieve data of errors produced at consulting to others controllers
+        /// </summary>
         [ApiExplorerSettings(IgnoreApi = true)]
         [Route("/error")]
         public IActionResult Error()

@@ -22,7 +22,7 @@ namespace MU.Domain.Entities.Owners
         public OwnerId IdOwner { get; private set; }
         public string Name { get; private set; } = string.Empty;
         public Address Address { get; private set; }
-        public string Photo { get; private set; } = string.Empty; // set only name of file
+        public string Photo { get; private set; } = string.Empty; // set path complete of file
         public DateTime Birthay { get; private set; }
         public bool Enabled { get; private set; }
 

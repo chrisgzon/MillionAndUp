@@ -42,10 +42,11 @@ namespace MU.Application.UseCases.Properties.Commands.AddImage
 
             Guid propertyImageId = Guid.NewGuid();
             string fileNameCustom = string.Format("{0}{1}", DateTime.Now.Ticks.ToString(), Path.GetExtension(request.FileName));
+            string PathFile = Path.Combine(request.PathFolder, Property.IdProperty.Value.ToString(), fileNameCustom);
             PropertyImage propertyImage = new PropertyImage(
                 new PropertyImageId(propertyImageId),
                 Property.IdProperty,
-                fileNameCustom,
+                PathFile,
                 true,
                 request.PathFolder,
                 request.BytesFile,

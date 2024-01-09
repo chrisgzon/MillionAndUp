@@ -18,11 +18,11 @@ namespace MU.Infrastructure.Repositories
 
         public async Task CreateAsync(Property entity) => await _muContext.Properties.AddAsync(entity);
 
-        public async Task<List<Property>> ListAsync() => await _muContext.Properties.Include(p => p.Owner).ToListAsync();
+        public async Task<List<Property>> ListAsync() => await _muContext.Properties.Include(p => p.Owner).Include(p => p.PropertyImages).ToListAsync();
 
-        public IQueryable<Property> SearchByFilters() => _muContext.Properties.AsNoTracking();
+        public IQueryable<Property> SearchByFilters() => _muContext.Properties.Include(p => p.PropertyImages).AsNoTracking();
 
-        public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.Include(p => p.Owner).SingleOrDefaultAsync(p => p.IdProperty == entityId);
+        public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.Include(p => p.Owner).Include(p => p.PropertyImages).SingleOrDefaultAsync(p => p.IdProperty == entityId);
 
         public void Update(Property entity) => _muContext.Properties.Update(entity);
     }

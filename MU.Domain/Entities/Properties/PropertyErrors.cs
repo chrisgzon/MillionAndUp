@@ -4,6 +4,11 @@ namespace MU.Domain.Entities.Properties
 {
     public static class PropertyErrors
     {
+        public static Error YearMaxIsCurrent { get; } = Error.Validation(
+            code: "Property.yearBuild",
+            description: "Not was possible build the code internal of the property, the year maximum permitted  is the current year."
+        );
+
         public static Error cannotCreateCodeInternal { get; } = Error.Validation(
             code: "Property.CodeInternal",
             description: "Not was possible build the code internal of the property, please review the data."

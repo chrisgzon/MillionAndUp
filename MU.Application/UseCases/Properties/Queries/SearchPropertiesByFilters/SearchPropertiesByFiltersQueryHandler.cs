@@ -55,7 +55,14 @@ namespace MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters
                     p.YearBuild,
                     p.Address.AddressString,
                     p.CodeInternal.Value,
-                    p.IdOwner.Value
+                    p.Enabled,
+                    p.IdOwner.Value,
+                    p.PropertyImages.Select(i => new PropertyImageResponse(
+                        i.IdPropertyImage.Value,
+                        i.IdProperty.Value,
+                        i.File,
+                        i.Enabled)
+                    ).ToList()
                 ));
 
             PagedList<PropertyResponse> properties = await PagedList<PropertyResponse>.CreateAsync(

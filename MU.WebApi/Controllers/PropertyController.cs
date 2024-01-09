@@ -10,6 +10,7 @@ using MU.Application.UseCases.Properties.Queries.List;
 using MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters;
 using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 using MU.WebApi.Common;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MU.WebApi.Controllers
 {
@@ -26,7 +27,12 @@ namespace MU.WebApi.Controllers
         }
 
         #region GET
+        /// <summary>
+        /// Return all list of properties exists in the database.
+        /// </summary>
         [HttpGet]
+        [SwaggerOperation("ListAll")]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> ListAll()
         {
             var listPropertiesResult = await _mediator.Send(new ListPropertiesQuery());
@@ -36,6 +42,11 @@ namespace MU.WebApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Return a property than match with the id getted.
+        /// </summary>
+        [ProducesResponseType(200)]
+        [SwaggerOperation("GetById")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -46,6 +57,9 @@ namespace MU.WebApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Return all items than match with filters getted, returns items for pagination.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetByFilters([FromQuery] SearchPropertiesByFiltersQuery request)
         {
