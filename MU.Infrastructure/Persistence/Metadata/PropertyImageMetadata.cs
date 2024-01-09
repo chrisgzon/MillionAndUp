@@ -19,6 +19,10 @@ namespace MU.Infrastructure.Metadata
                 propertyId => propertyId.Value,
                 value => new PropertyId(value));
             builder.Property(p => p.File).HasMaxLength(250);
+
+            builder.Ignore(p => p.FileData);
+            builder.Ignore(p => p.FileLength);
+            builder.Ignore(p => p.PathFolder);
             #endregion table properties
 
             #region relationships

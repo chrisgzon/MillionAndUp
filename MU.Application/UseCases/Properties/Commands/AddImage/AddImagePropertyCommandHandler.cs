@@ -1,0 +1,60 @@
+﻿using ErrorOr;
+using MediatR;
+using MU.Application.Services.ImageService;
+using MU.Domain.Entities.Properties;
+using MU.Domain.Entities.PropertyImages;
+using MU.Domain.Primitives;
+using System.Text.RegularExpressions;
+
+namespace MU.Application.UseCases.Properties.Commands.AddImage
+{
+    internal sealed class AddImagePropertyCommandHandler : IRequestHandler<AddImagePropertyCommand, ErrorOr<Unit>>
+    {
+        private readonly IRepositoryProperty _repositoryProperty;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageService _imageService;
+        private const string Pattern = "[^\\s]+(.*?)\\.(jpg|jpeg|png|JPG|JPEG|PNG)$";
+        private const int FileLengthMaxKb = 50;
+
+        public AddImagePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork, IImageService imageService)
+        {
+            _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _imageService = imageService ?? throw new ArgumentNullException(nameof(imageService));
+        }
+
+        public async Task<ErrorOr<Unit>> Handle(AddImagePropertyCommand request, CancellationToken cancellationToken)
+        {
+            Regex Regex = new Regex(Pattern, RegexOptions.Compiled);
+            if (!Regex.IsMatch(request.FileName))
+            {
+                return PropertyImageErrors.ExtentionFileInvalid;
+            }
+            if (request.FileLengt / 1024 > FileLengthMaxKb)
+            {
+                return PropertyImageErrors.SizeFileInvalid;
+            }
+
+            Property? Property = await _repositoryProperty.SearchByIdAsync(new PropertyId(request.IdProperty));
+            if (Property == null) {
+                return PropertyImageErrors.PropertyNotFound;
+            }
+
+            Guid propertyImageId = Guid.NewGuid();
+            string fileNameCustom = string.Format("{0}{1}", DateTime.Now.Ticks.ToString(), Path.GetExtension(request.FileName));
+            PropertyImage propertyImage = new PropertyImage(
+                new PropertyImageId(propertyImageId),
+                Property.IdProperty,
+                fileNameCustom,
+                true,
+                request.PathFolder,
+                request.BytesFile,
+                request.FileLengt);
+            Property.AddPropertyImage(propertyImage);
+            _repositoryProperty.Update(Property);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Unit.Value;
+        }
+    }
+}

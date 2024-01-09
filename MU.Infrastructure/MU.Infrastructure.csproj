@@ -17,4 +17,8 @@
     <ProjectReference Include="..\MU.Domain\MU.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\ImageStorage\Properties\" />
+  </ItemGroup>
+
 </Project>

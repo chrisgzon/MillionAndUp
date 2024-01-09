@@ -1,8 +1,11 @@
-﻿using MU.Domain.Entities.Owners;
+﻿using MediatR;
+using MU.Domain.Entities.Events;
+using MU.Domain.Entities.Owners;
 using MU.Domain.Entities.PropertyImages;
 using MU.Domain.Entities.PropertyTraces;
 using MU.Domain.Primitives;
 using MU.Domain.ValueObjects;
+using System.Text.RegularExpressions;
 
 namespace MU.Domain.Entities.Properties
 {
@@ -37,8 +40,8 @@ namespace MU.Domain.Entities.Properties
         public bool Enabled { get; private set; }
 
         public Owner? Owner { get; private set; }
-        public ICollection<PropertyImage> PropertyImages { get; private set; }
-        public ICollection<PropertyTrace> PropertyTraces { get; private set; }
+        public ICollection<PropertyImage> PropertyImages { get; private set; } = new List<PropertyImage>();
+        public ICollection<PropertyTrace> PropertyTraces { get; private set; } = new List<PropertyTrace>();
 
         public void SetOwner(Owner owner)
         {
@@ -47,7 +50,20 @@ namespace MU.Domain.Entities.Properties
 
         public void AddPropertyImage(PropertyImage propertyImage)
         {
+            string Pattern = "[^\\s]+(.*?)\\.(jpg|jpeg|png|JPG|JPEG|PNG)$";
+            int FileLengthMaxKb = 50;
+            Regex Regex = new Regex(Pattern, RegexOptions.Compiled);
+            if (string.IsNullOrWhiteSpace(propertyImage.File) || !Regex.IsMatch(propertyImage.File))
+                return;
+
+            if (propertyImage.FileLength / 1024 > FileLengthMaxKb)
+                return;
+
             PropertyImages.Add(propertyImage);
+
+            // Add the PropertyImageAddedDomainEvent to the domain events collection 
+            // to be raised/dispatched when comitting changes into the Database [ After DbContext.SaveChanges() ]
+            AddImageAddedDomainEvent(propertyImage);
         }
 
         public void AddPropertyTrace(PropertyTrace propertyTrace)
@@ -81,6 +97,13 @@ namespace MU.Domain.Entities.Properties
                 Address = newAddress;
                 //TODO: Add domain event
             }
+        }
+
+        private void AddImageAddedDomainEvent(PropertyImage propertyImage)
+        {
+            PropertyImageAddedDomainEvent PropertyImageAddedDomainEvent = new PropertyImageAddedDomainEvent(this, propertyImage);
+
+            Raise(PropertyImageAddedDomainEvent);
         }
     }
 }

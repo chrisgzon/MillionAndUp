@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MU.Application.UseCases.Properties.Commands.AddImage;
 using MU.Application.UseCases.Properties.Commands.ChangeAddress;
 using MU.Application.UseCases.Properties.Commands.Create;
 using MU.Application.UseCases.Properties.Commands.Update;
@@ -17,10 +18,11 @@ namespace MU.WebApi.Controllers
     public class PropertyController : ApiController
     {
         private readonly ISender _mediator;
-
-        public PropertyController(ISender mediator)
+        private readonly IConfiguration _configuration;
+        public PropertyController(ISender mediator, IConfiguration configuration)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         #region GET
@@ -64,7 +66,7 @@ namespace MU.WebApi.Controllers
                 propertyId => Ok(propertyId),
                 errors => Problem(errors)
             );
-        }
+        }        
         #endregion POST
 
         #region PATCH
@@ -102,6 +104,29 @@ namespace MU.WebApi.Controllers
             var updateAddressPropertyResult = await _mediator.Send(request);
             return updateAddressPropertyResult.Match(
                 propertyId => NoContent(),
+                errors => Problem(errors)
+            );
+        }
+
+        [HttpPatch("idProperty")]
+        public async Task<IActionResult> AddImage(IFormFile file, [FromQuery] Guid idProperty)
+        {
+            byte[] bytesFile = new byte[file.Length];
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+                bytesFile = memoryStream.ToArray();
+            }
+            string PathFolder = _configuration.GetValue<string>("PathFilesProperties").ToString();
+            var addImagePropertyResult = await _mediator.Send(new AddImagePropertyCommand(
+                idProperty,
+                PathFolder,
+                bytesFile,
+                file.FileName,
+                file.Length
+            ));
+            return addImagePropertyResult.Match(
+                propertyId => Ok(propertyId),
                 errors => Problem(errors)
             );
         }

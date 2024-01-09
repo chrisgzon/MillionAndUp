@@ -39,16 +39,17 @@ namespace MU.Infrastructure.Contexts
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            IEnumerable<INotification> domainEvents = ChangeTracker.Entries<AggregateRoot>()
-                .Select(e => e.Entity)
-                .Where(e => e.GetDomainEvents().Any())
-                .SelectMany(e => {
-                    ICollection<INotification> domainEvents = e.GetDomainEvents();
 
-                    e.ClearDomainEvents();
+            var domainEntities = ChangeTracker
+               .Entries<AggregateRoot>()
+               .Where(x => x.Entity.GetDomainEvents() != null && x.Entity.GetDomainEvents().Any());
 
-                    return domainEvents;
-                });
+            var domainEvents = domainEntities
+                .SelectMany(x => x.Entity.GetDomainEvents())
+                .ToList();
+
+            domainEntities.ToList()
+                .ForEach(entity => entity.Entity.ClearDomainEvents());
 
             int result = await base.SaveChangesAsync(cancellationToken);
 

@@ -4,11 +4,28 @@ namespace MU.Domain.Entities.PropertyImages
 {
     public class PropertyImage
     {
-        public PropertyImageId IdPropertyImage { get; set; }
-        public PropertyId IdProperty { get; set; }
-        public string File { get; set; } = string.Empty; // set only name of file
-        public bool Enabled { get; set; }
+        public PropertyImage(PropertyImageId idPropertyImage, PropertyId idProperty, string file, bool enabled, string? pathFolder, byte[]? fileData, long? fileLength)
+        {
+            IdPropertyImage = idPropertyImage;
+            IdProperty = idProperty;
+            File = file;
+            Enabled = enabled;
+            PathFolder = pathFolder;
+            FileData = fileData;
+            FileLength = fileLength;
+        }
 
-        public virtual Property Property { get; set; }
+        private PropertyImage() { }
+
+        public PropertyImageId IdPropertyImage { get; private set; }
+        public PropertyId IdProperty { get; private set; }
+        public string File { get; private set; } = string.Empty; // set only name of file
+        public bool Enabled { get; private set; }
+
+        public string? PathFolder {  get; private set; }
+        public byte[]? FileData { get; private set; }
+        public long? FileLength { get; private set; }
+
+        public Property? Property { get; private set; }
     }
 }

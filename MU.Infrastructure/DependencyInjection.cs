@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MU.Application.Services.ImageService;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Interfaces.Repositories;
 using MU.Domain.Primitives;
 using MU.Infrastructure.Contexts;
 using MU.Infrastructure.Persistence.Repositories;
 using MU.Infrastructure.Repositories;
+using MU.Infrastructure.Services.ImageStorage;
 
 namespace MU.Infrastructure
 {
@@ -27,6 +29,8 @@ namespace MU.Infrastructure
 
             services.AddScoped<IRepositoryProperty, PropertyRepository>();
             services.AddScoped<IRepositoryOwner, OwnerRepository>();
+            services.AddScoped<IRepositoryPropertyImage, PropertyImageRepository>();
+            services.AddScoped<IImageService, ImageService>();
             return services;
         }
     }
