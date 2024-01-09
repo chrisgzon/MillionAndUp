@@ -23,14 +23,20 @@ namespace MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters
         {
             IQueryable<Property> propertiesQuery = _repositoryProperty.SearchByFilters();
 
-            if (!String.IsNullOrWhiteSpace(request.SearchTerm))
-            {
-                propertiesQuery = propertiesQuery.Where(p =>
-                    p.Name.Contains(request.SearchTerm) ||
-                    ((string)p.CodeInternal).Contains(request.SearchTerm) ||
-                    (p.Address.City+", "+p.Address.State + ", " +p.Address.Line1 + " " + p.Address.Line2 + ", " +p.Address.ZipCode).Contains(request.SearchTerm)
-                );
-            }
+            if (!String.IsNullOrWhiteSpace(request.NameProperty))
+                propertiesQuery = propertiesQuery.Where(p => p.Name.Contains(request.NameProperty));
+            if (!String.IsNullOrWhiteSpace(request.Address))
+                propertiesQuery = propertiesQuery.Where(p => (p.Address.City + ", " + p.Address.State + ", " + p.Address.Line1 + " " + p.Address.Line2 + ", " + p.Address.ZipCode).Contains(request.Address));
+            if (!String.IsNullOrWhiteSpace(request.CodeInternal))
+                propertiesQuery = propertiesQuery.Where(p => ((string)p.CodeInternal).Contains(request.CodeInternal));
+            if (request.PriceSale.HasValue)
+                propertiesQuery = propertiesQuery.Where(p => p.PriceSale.Equals(request.PriceSale));
+            if (request.YearBuild.HasValue)
+                propertiesQuery = propertiesQuery.Where(p => p.YearBuild.Equals(request.YearBuild));
+            if (request.Enabled.HasValue)
+                propertiesQuery = propertiesQuery.Where(p => p.Enabled.Equals(request.Enabled));
+            if (request.IdOwner.HasValue)
+                propertiesQuery = propertiesQuery.Where(p => p.IdOwner.Equals(request.IdOwner));
 
             if (request.SortOrder?.ToLower() == "desc")
             {
