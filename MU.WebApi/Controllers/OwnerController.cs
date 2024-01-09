@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using MU.Application.UseCases.Owners.Commands.Create;
 using MU.Application.UseCases.Owners.Queries.GetAll;
 using MU.Application.UseCases.Owners.Queries.GetById;
-using MU.Application.UseCases.Properties.Commands.Create;
-using MU.Application.UseCases.Properties.Queries.List;
-using MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters;
-using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 using MU.WebApi.Common;
 using Swashbuckle.AspNetCore.Annotations;
 
