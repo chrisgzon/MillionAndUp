@@ -17,6 +17,7 @@
         public string Line2 { get; init; }
         public string ZipCode { get; init; }
         public string AddressString => $"{City}, {State}, {Line1} {Line2}, {ZipCode}";
+        public static explicit operator string(Address address) => address.AddressString;
 
         public static Address? Create(string city, string state, string line1, string line2, string zipCode)
         {

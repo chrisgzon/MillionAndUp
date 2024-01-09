@@ -8,6 +8,8 @@ namespace MU.Domain.ValueObjects
         private const int MinLengthName = 5;
         private const string PatternReplaceCharacters = "/(\\s)/g";
         private InternalCodeProperty(string code) => Value = code;
+
+        public static explicit operator string(InternalCodeProperty codeInternal) => codeInternal.Value;
         public static InternalCodeProperty? Create(string nameProperty, int year)
         {
             if (String.IsNullOrEmpty(nameProperty) || year == 0 || nameProperty.Length < MinLengthName)

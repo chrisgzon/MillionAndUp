@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters;
 using MU.Domain.Entities.Properties;
+using MU.Domain.ValueObjects;
 using MU.Infrastructure.Contexts;
+using System.Linq.Expressions;
 
 namespace MU.Infrastructure.Repositories
 {
@@ -16,10 +20,7 @@ namespace MU.Infrastructure.Repositories
 
         public async Task<List<Property>> ListAsync() => await _muContext.Properties.Include(p => p.Owner).ToListAsync();
 
-        public Task<List<Property>> ListByFiltersAsync(Property entity)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<Property> SearchByFilters() => _muContext.Properties.AsNoTracking();
 
         public async Task<Property?> SearchByIdAsync(PropertyId entityId) => await _muContext.Properties.Include(p => p.Owner).SingleOrDefaultAsync(p => p.IdProperty == entityId);
 

@@ -29,6 +29,7 @@ namespace MU.Infrastructure.Metadata
                 codeInternal => codeInternal.Value,
                 value => InternalCodeProperty.SetInternalCode(value)!
             );
+
             builder.OwnsOne(p => p.Address, addressBuilder =>
             {
                 addressBuilder.Property(a => a.City).HasMaxLength(150).IsRequired();

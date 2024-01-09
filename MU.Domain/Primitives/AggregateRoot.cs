@@ -8,6 +8,11 @@ namespace MU.Domain.Primitives
 
         public ICollection<INotification> GetDomainEvents() => _domainEvents;
 
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+
         protected void Raise(INotification domainEvent)
         {
             _domainEvents.Add(domainEvent);

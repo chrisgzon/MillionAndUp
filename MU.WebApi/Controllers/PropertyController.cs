@@ -6,6 +6,7 @@ using MU.Application.UseCases.Properties.Commands.Create;
 using MU.Application.UseCases.Properties.Commands.Update;
 using MU.Application.UseCases.Properties.Commands.UpdatePrice;
 using MU.Application.UseCases.Properties.Queries.List;
+using MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters;
 using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 using MU.WebApi.Common;
 
@@ -44,11 +45,11 @@ namespace MU.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetByFilters([FromBody] SearchPropertiesByFiltersQuery request)
+        public async Task<IActionResult> GetByFilters([FromQuery] SearchPropertiesByFiltersQuery request)
         {
-            var propertyresult = await _mediator.Send(request);
-            return propertyresult.Match(
-                property => Ok(property),
+            var propertyesresult = await _mediator.Send(request);
+            return propertyesresult.Match(
+                property => Ok(propertyesresult.Value),
                 errors => Problem(errors)
             );
         }

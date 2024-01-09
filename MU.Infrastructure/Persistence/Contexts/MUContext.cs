@@ -42,7 +42,13 @@ namespace MU.Infrastructure.Contexts
             IEnumerable<INotification> domainEvents = ChangeTracker.Entries<AggregateRoot>()
                 .Select(e => e.Entity)
                 .Where(e => e.GetDomainEvents().Any())
-                .SelectMany(e => e.GetDomainEvents());
+                .SelectMany(e => {
+                    ICollection<INotification> domainEvents = e.GetDomainEvents();
+
+                    e.ClearDomainEvents();
+
+                    return domainEvents;
+                });
 
             int result = await base.SaveChangesAsync(cancellationToken);
 
