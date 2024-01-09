@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
+using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 
 namespace MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters
 {

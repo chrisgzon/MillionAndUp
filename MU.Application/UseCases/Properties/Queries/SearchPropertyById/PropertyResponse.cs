@@ -1,4 +1,4 @@
-﻿namespace MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters
+﻿namespace MU.Application.UseCases.Properties.Queries.SearchPropertyById
 {
     public class PropertyResponse
     {
@@ -12,9 +12,9 @@
             IdOwner = idOwner;
         }
 
-        public Guid IdProperty {  get; }
+        public Guid IdProperty { get; }
         public string NameProperty { get; }
-        public int YearBuild {  get; }
+        public int YearBuild { get; }
         public string Address { get; }
         public string CodeInternal { get; }
         public Guid IdOwner { get; }

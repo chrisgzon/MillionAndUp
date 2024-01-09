@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
+using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Primitives;
 using MU.Domain.ValueObjects;
