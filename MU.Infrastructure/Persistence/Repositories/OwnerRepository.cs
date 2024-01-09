@@ -14,15 +14,9 @@ namespace MU.Infrastructure.Persistence.Repositories
             _muContext = muContext;
         }
 
-        public Task CreateAsync(Owner entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task CreateAsync(Owner entity) => await _muContext.Owners.AddAsync(entity);
 
-        public Task<List<Owner>> ListAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<List<Owner>> ListAsync() => _muContext.Owners.Include(o => o._properties).ToListAsync();
 
         public async Task<Owner?> SearchByIdAsync(OwnerId entityId) => await _muContext.Owners.Include("_properties").SingleOrDefaultAsync(x => x.IdOwner == entityId);
 

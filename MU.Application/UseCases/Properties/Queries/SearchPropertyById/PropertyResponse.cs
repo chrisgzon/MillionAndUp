@@ -2,7 +2,7 @@
 {
     public class PropertyResponse
     {
-        public PropertyResponse(Guid idProperty, string nameProperty, int yearBuild, string address, string codeInternal, bool enabled, Guid idOwner, List<PropertyImageResponse> images)
+        public PropertyResponse(Guid idProperty, string nameProperty, int yearBuild, string address, string codeInternal, bool enabled, Guid idOwner, List<PropertyImageResponse>? images)
         {
             IdProperty = idProperty;
             NameProperty = nameProperty;
@@ -21,6 +21,6 @@
         public string CodeInternal { get; }
         public bool Enabled { get; }
         public Guid IdOwner { get; }
-        public List<PropertyImageResponse> Images { get; }
+        public List<PropertyImageResponse>? Images { get; }
     }
 }

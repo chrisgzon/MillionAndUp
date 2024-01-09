@@ -3,21 +3,17 @@ using MediatR;
 using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Primitives;
-using MU.Domain.ValueObjects;
 using System.Linq.Expressions;
-using System.Reflection.Emit;
 
 namespace MU.Application.UseCases.Properties.Queries.SearchPropertiesByFilters
 {
     internal sealed class SearchPropertiesByFiltersQueryHandler : IRequestHandler<SearchPropertiesByFiltersQuery, ErrorOr<PagedList<PropertyResponse>>>
     {
         private readonly IRepositoryProperty _repositoryProperty;
-        private readonly IUnitOfWork _unitOfWork;
 
         public SearchPropertiesByFiltersQueryHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork)
         {
             _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public async Task<ErrorOr<PagedList<PropertyResponse>>> Handle(SearchPropertiesByFiltersQuery request, CancellationToken cancellationToken)

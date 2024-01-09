@@ -31,9 +31,9 @@ namespace MU.WebApi.Controllers
         /// Return all list of properties exists in the database.
         /// </summary>
         [HttpGet]
-        [SwaggerOperation("ListAll")]
+        [SwaggerOperation("GetAll")]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> ListAll()
+        public async Task<IActionResult> GetAll()
         {
             var listPropertiesResult = await _mediator.Send(new ListPropertiesQuery());
             return listPropertiesResult.Match(
