@@ -4,7 +4,7 @@ using MU.Application.Services.JWTGenerator;
 using MU.Domain.Entities.Owners;
 using MU.Domain.Interfaces.Repositories;
 
-namespace MU.Application.UseCases.Tokens.Queries
+namespace MU.Application.UseCases.Tokens.Queries.GenerateToken
 {
     internal sealed class GenerateTokenQueryHandler : IRequestHandler<GenerateTokenQuery, ErrorOr<GenerateTokenResult>>
     {

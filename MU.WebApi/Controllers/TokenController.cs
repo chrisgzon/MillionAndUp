@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MU.Application.UseCases.Tokens.Queries;
+using MU.Application.UseCases.Tokens.Queries.GenerateToken;
 using MU.WebApi.Common;
 
 namespace MU.WebApi.Controllers

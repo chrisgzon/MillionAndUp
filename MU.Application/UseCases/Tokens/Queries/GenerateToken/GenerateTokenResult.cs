@@ -1,4 +1,4 @@
-﻿namespace MU.Application.UseCases.Tokens.Queries
+﻿namespace MU.Application.UseCases.Tokens.Queries.GenerateToken
 {
     public record GenerateTokenResult(
         Guid Id,

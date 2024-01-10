@@ -24,7 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1EEDF268
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{0CE39669-DD56-4D84-95E4-D017C9F58404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Properties.UnitTests", "Tests\UnitTests\Application.Properties.UnitTests\Application.Properties.UnitTests.csproj", "{E78EC5B2-8965-4172-8419-E19C9D9AC96A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Properties.UnitTests", "Tests\UnitTests\Application.Properties.UnitTests\Application.Properties.UnitTests.csproj", "{E78EC5B2-8965-4172-8419-E19C9D9AC96A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C0C489FE-A5CF-47E4-99AD-E511028D9EE3}"
+	ProjectSection(SolutionItems) = preProject
+		Controllers.MD = Controllers.MD
+		Readme.MD = Readme.MD
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
