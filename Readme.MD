@@ -64,14 +64,14 @@ Estructura del Proyecto
     |-- 
 |-- .gitignore
 |-- Scripts
-|-- MyProject.sln
+|-- MillionAndUp.sln
 
 MU.Application
-Descripci髇
-Se uso una arquitectura hexagonal para la creaci髇 de este proyecto, el cual tiene 3 capas principales.
-La capa de aplicaci髇 contiene los servicios de aplicaci髇 que orquestan la l骻ica de negocio utilizando los principios de DDD y el patr髇 CQRS, tambien contiene los manejadores de eventos proporcionados por la capa Dominio.
+Descripci贸n
+Se uso una arquitectura hexagonal para la creaci贸n de este proyecto, el cual tiene 3 capas principales.
+La capa de aplicaci贸n contiene los servicios de aplicaci贸n que orquestan la l贸gica de negocio utilizando los principios de DDD y el patr贸n CQRS, tambien contiene los manejadores de eventos proporcionados por la capa Dominio.
 
-Tecnolog韆s Utilizadas
+Tecnolog铆as Utilizadas
 C# .NET Core 6
 MediatR para implementar CQRS y para manejar los eventos del dominio
 ErrorOr para los problem details
@@ -84,42 +84,42 @@ como en el caso de property para crear una propertyImage, la cual suscribe un ev
 Se hizo el uso tambien de valueObjects en este caso para los campos de Address y CodeInternal ya que se provee por medio de estos la logica necesaria para instanciar estos campos,
 se creo una clase "AggregateRoot", la cual provee los eventos a la entidad que la herede.
 
-Tecnolog韆s Utilizadas
+Tecnolog铆as Utilizadas
 C# .NET Core 6
 MediatR para implementar DDD y suscribir eventos
 ErrorOr para los problemDetails
 
 MU.Infrastructure
-Descripci髇
+Descripci贸n
 En la capa de infraestructura se hizo implementacion de los "Adapters" para acceder a la base de datos con entityFrameworkCore y tambien para implementar el servicio de storage de las imagenes, aqui cabe recalcar que 
 se implemento una carpeta en esta capa para el almacenamiento de las imagenes, esto es meramente simbolico a manera de simular un servicio de storage independiente a la aplicacion por lo cual no esta contemplado mostrar las imagenes
 en el api del proyecto, de igual manera si se deseara se podrian retornar estas imagenes en base64 y asi mismo mostrarlas haciendo uso por ejemplo de JS para procesar el base64.
 
-Tecnolog韆s Utilizadas
+Tecnolog铆as Utilizadas
 C# .NET Core 6
 MediatR para hacer la publicacion de los eventos de dominio
 entityFrameworkCore para configuracion de la base de datos
-AspNetCore.Authentication.JwtBearer para la generacon de tokens y servicio de autenticaci髇
+AspNetCore.Authentication.JwtBearer para la generacon de tokens y servicio de autenticaci贸n
 
 MyProject.API
-Descripci髇
-La API .NET Core expone los servicios de aplicaci髇 a trav閟 de controladores RESTful, con autenticaci髇 JWT.
+Descripci贸n
+La API .NET Core expone los servicios de aplicaci贸n a trav茅s de controladores RESTful, con autenticaci贸n JWT.
 
-Tecnolog韆s Utilizadas
+Tecnolog铆as Utilizadas
 C# .NET Core 6
 ASP.NET Core API
 ErrorOr para problemsDetails
-MediatR para la gesti髇 de comandos y consultas
-JWT para autenticaci髇
+MediatR para la gesti贸n de comandos y consultas
+JWT para autenticaci贸n
 
-C髆o Iniciar
+C贸mo Iniciar
 Clona el repositorio: git clone https://github.com/chrisgzon/MillionAndUp.git.
 
-Configuraci髇
-ubicar el archivo appsettings.json en el api y configurar las variables seg鷑 sea necesario.
-Abre la soluci髇 en Visual Studio o utiliza la CLI de .NET.
+Configuraci贸n
+ubicar el archivo appsettings.json en el api y configurar las variables seg煤n sea necesario.
+Abre la soluci贸n en Visual Studio o utiliza la CLI de .NET.
 Restaura los paquetes: dotnet restore.
-En la carpeta Scripts se encuentra el script SQL para la creaci髇 de la base de datos y tambien contiene un INSERT de un Owner necesario para probar el API ya que para la
+En la carpeta Scripts se encuentra el script SQL para la creaci贸n de la base de datos y tambien contiene un INSERT de un Owner necesario para probar el API ya que para la
 autenticacion se solicita el Id de un Owner, por lo cual se recomienda preferiblemente usar este script
 O tambien puedes ejecutar las migraciones con el comando: dotnet ef migrations add initialMigration -p MU.Infrastructure -s MU.WebApi -o Persistence/Migrations
 y posteriormente generar el script SQL con el siguiente comando: dotnet ef migrations script -s MU.WebApi -p MU.Infrastructure
