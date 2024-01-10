@@ -14,7 +14,7 @@ namespace MU.Domain.Entities.PropertyImages
             description: "The size of the file loaded is invalid only it's availabe 50KB."
         );
 
-        public static Error PropertyNotFound { get; } = Error.Validation(
+        public static Error PropertyNotFound { get; } = Error.NotFound(
             code: "PropertyImage.IdProperty",
             description: "property not found, please review the identifier sended."
         );

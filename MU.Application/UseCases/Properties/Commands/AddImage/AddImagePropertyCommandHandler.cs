@@ -8,22 +8,20 @@ using System.Text.RegularExpressions;
 
 namespace MU.Application.UseCases.Properties.Commands.AddImage
 {
-    internal sealed class AddImagePropertyCommandHandler : IRequestHandler<AddImagePropertyCommand, ErrorOr<Unit>>
+    public sealed class AddImagePropertyCommandHandler : IRequestHandler<AddImagePropertyCommand, ErrorOr<Guid>>
     {
         private readonly IRepositoryProperty _repositoryProperty;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IImageService _imageService;
         private const string Pattern = "[^\\s]+(.*?)\\.(jpg|jpeg|png|JPG|JPEG|PNG)$";
         private const int FileLengthMaxKb = 50;
 
-        public AddImagePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork, IImageService imageService)
+        public AddImagePropertyCommandHandler(IRepositoryProperty repositoryProperty, IUnitOfWork unitOfWork)
         {
             _repositoryProperty = repositoryProperty ?? throw new ArgumentNullException(nameof(repositoryProperty));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-            _imageService = imageService ?? throw new ArgumentNullException(nameof(imageService));
         }
 
-        public async Task<ErrorOr<Unit>> Handle(AddImagePropertyCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Guid>> Handle(AddImagePropertyCommand request, CancellationToken cancellationToken)
         {
             Regex Regex = new Regex(Pattern, RegexOptions.Compiled);
             if (!Regex.IsMatch(request.FileName))
@@ -55,7 +53,7 @@ namespace MU.Application.UseCases.Properties.Commands.AddImage
             _repositoryProperty.Update(Property);
             await _unitOfWork.SaveChangesAsync();
 
-            return Unit.Value;
+            return propertyImage.IdPropertyImage.Value;
         }
     }
 }

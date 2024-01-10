@@ -8,5 +8,5 @@ namespace MU.Application.UseCases.Properties.Commands.AddImage
         string PathFolder,
         byte[] BytesFile,
         string FileName,
-        long FileLengt) : IRequest<ErrorOr<Unit>>;
+        long FileLengt) : IRequest<ErrorOr<Guid>>;
 }
