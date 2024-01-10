@@ -77,7 +77,7 @@ namespace Application.Properties.UnitTests.AddImage
             byte[] bytes = new byte[1024 * 51];
             AddImagePropertyCommand command = new AddImagePropertyCommand(
                 new Guid("047263c3-8c4f-4274-8103-dc74cf87f71d"),
-                "",
+                "..\\MU.Infrastructure\\Services\\ImageStorage\\Properties\\047263c3-8c4f-4274-8103-dc74cf87f71d",
                 bytes,
                 "filename.png",
                 (1024 * 50)
