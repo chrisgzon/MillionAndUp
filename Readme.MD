@@ -154,13 +154,13 @@ Clona el repositorio: git clone https://github.com/chrisgzon/MillionAndUp.git.
 
 Configuración
 
-* ubicar el archivo appsettings.json en el api y configurar las variables según sea necesario.
-
 * Abre la solución en Visual Studio o utiliza la CLI de .NET.
+
+* ubicar el archivo appsettings.json en el api y configurar las variables según sea necesario.
 
 * Restaura los paquetes: dotnet restore.
 
-* En la carpeta Scripts se encuentra el script SQL para la creación de la base de datos y tambien contiene un INSERT de un Owner necesario para probar el API ya que para la
+* En la carpeta Scripts se encuentra el script SQL initialMigrationScript.sql para la creación de la base de datos y tambien contiene un INSERT de un Owner necesario para probar el API ya que para la
   autenticacion se solicita el Id de un Owner, por lo cual se recomienda preferiblemente usar este script
 
 * Tambien puedes ejecutar las migraciones con el comando: dotnet ef migrations add initialMigration -p MU.Infrastructure -s MU.WebApi -o Persistence/Migrations
