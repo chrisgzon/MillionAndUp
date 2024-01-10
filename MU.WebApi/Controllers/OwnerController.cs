@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MU.Application.UseCases.Owners.Commands.Create;
 using MU.Application.UseCases.Owners.Queries.GetAll;
@@ -8,16 +9,15 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace MU.WebApi.Controllers
 {
+    [Authorize]
     [Route("[controller]/[action]")]
     [ApiController]
     public class OwnerController : ApiController
     {
         private readonly ISender _mediator;
-        private readonly IConfiguration _configuration;
-        public OwnerController(ISender mediator, IConfiguration configuration)
+        public OwnerController(ISender mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         #region GET

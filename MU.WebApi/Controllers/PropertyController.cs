@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MU.Application.UseCases.Properties.Commands.AddImage;
 using MU.Application.UseCases.Properties.Commands.ChangeAddress;
@@ -14,6 +15,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace MU.WebApi.Controllers
 {
+    [Authorize]
     [Route("[controller]/[action]")]
     [ApiController]
     public class PropertyController : ApiController
@@ -122,8 +124,8 @@ namespace MU.WebApi.Controllers
             );
         }
 
-        [HttpPatch("idProperty")]
-        public async Task<IActionResult> AddImage(IFormFile file, [FromQuery] Guid idProperty)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> AddImage(IFormFile file, Guid id)
         {
             byte[] bytesFile = new byte[file.Length];
             using (var memoryStream = new MemoryStream())
@@ -133,7 +135,7 @@ namespace MU.WebApi.Controllers
             }
             string PathFolder = _configuration.GetValue<string>("PathFilesProperties").ToString();
             var addImagePropertyResult = await _mediator.Send(new AddImagePropertyCommand(
-                idProperty,
+                id,
                 PathFolder,
                 bytesFile,
                 file.FileName,

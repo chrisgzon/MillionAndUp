@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MU.Application.Services.ImageService;
+using MU.Application.Services.JWTGenerator;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Interfaces.Repositories;
 using MU.Domain.Primitives;
@@ -9,6 +11,8 @@ using MU.Infrastructure.Contexts;
 using MU.Infrastructure.Persistence.Repositories;
 using MU.Infrastructure.Repositories;
 using MU.Infrastructure.Services.ImageStorage;
+using MU.Infrastructure.Services.JWTGenerator;
+using MU.Infrastructure.Services.TokenValidation;
 
 namespace MU.Infrastructure
 {
@@ -16,7 +20,9 @@ namespace MU.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddPersistence(configuration);
+            services
+                .AddAuthentication(configuration)
+                .AddPersistence(configuration);
 
             return services;
         }
@@ -31,6 +37,20 @@ namespace MU.Infrastructure
             services.AddScoped<IRepositoryOwner, OwnerRepository>();
             services.AddScoped<IRepositoryPropertyImage, PropertyImageRepository>();
             services.AddScoped<IImageService, ImageService>();
+            return services;
+        }
+
+        private static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<JWTSettings>(configuration.GetSection(JWTSettings.Section));
+
+            services.AddSingleton<IJWTGenerator, JWTGenerator>();
+
+            services
+                .ConfigureOptions<JwtBearerTokenValidationConfiguration>()
+                .AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer();
+
             return services;
         }
     }

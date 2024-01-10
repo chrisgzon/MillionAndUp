@@ -87,5 +87,8 @@ INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20240108212006_initialMigration', N'6.0.25');
 GO
 
+INSERT INTO Owner (IdOwner, Name, Address_City, Address_State, Address_Line1, Address_Line2, Address_ZipCode, Photo, Birthay, Enabled)
+VALUES ('3522FFB1-806B-4A48-AE27-8F39997BACF0', 'Christian Pruebas', 'Miami', 'Florida', '1959 NE 153 ST', 'GL (Suite)', '33162', '', '2001-06-25', 1)
+
 COMMIT;
 GO

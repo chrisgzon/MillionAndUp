@@ -2,7 +2,6 @@
 using MediatR;
 using MU.Application.UseCases.Properties.Queries.SearchPropertyById;
 using MU.Domain.Entities.Owners;
-using MU.Domain.Entities.Properties;
 using MU.Domain.Interfaces.Repositories;
 
 namespace MU.Application.UseCases.Owners.Queries.GetById
