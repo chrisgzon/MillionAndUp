@@ -1,4 +1,5 @@
 Million And UP
+
 Proyecto realizado como parte del proceso de seleccion para ingresar a Million And Up
 
 Estructura del Proyecto
@@ -118,16 +119,22 @@ Cómo Iniciar
 Clona el repositorio: git clone https://github.com/chrisgzon/MillionAndUp.git.
 
 Configuración
-ubicar el archivo appsettings.json en el api y configurar las variables según sea necesario.
-Abre la solución en Visual Studio o utiliza la CLI de .NET.
-Restaura los paquetes: dotnet restore.
-En la carpeta Scripts se encuentra el script SQL para la creación de la base de datos y tambien contiene un INSERT de un Owner necesario para probar el API ya que para la
-autenticacion se solicita el Id de un Owner, por lo cual se recomienda preferiblemente usar este script
-O tambien puedes ejecutar las migraciones con el comando: dotnet ef migrations add initialMigration -p MU.Infrastructure -s MU.WebApi -o Persistence/Migrations
-y posteriormente generar el script SQL con el siguiente comando: dotnet ef migrations script -s MU.WebApi -p MU.Infrastructure
-recurerda que si lo haces de esta forma sera necesario hacer el insert en base de datos del Owner para asi generar el token con este id
 
-Ejecuta el proyecto de la API: dotnet run --project MyProject.API.
+* ubicar el archivo appsettings.json en el api y configurar las variables según sea necesario.
+
+* Abre la solución en Visual Studio o utiliza la CLI de .NET.
+
+* Restaura los paquetes: dotnet restore.
+
+* En la carpeta Scripts se encuentra el script SQL para la creación de la base de datos y tambien contiene un INSERT de un Owner necesario para probar el API ya que para la
+  autenticacion se solicita el Id de un Owner, por lo cual se recomienda preferiblemente usar este script
+
+* Tambien puedes ejecutar las migraciones con el comando: dotnet ef migrations add initialMigration -p MU.Infrastructure -s MU.WebApi -o Persistence/Migrations
+
+* y posteriormente generar el script SQL con el siguiente comando: dotnet ef migrations script -s MU.WebApi -p MU.Infrastructure
+  recurerda que si lo haces de esta forma sera necesario hacer el insert en base de datos del Owner para asi generar el token con este id
+
+* Ejecuta el proyecto de la API: dotnet run --project MyProject.API.
 
 
 Para acceder a los controllers de Owner y Property se tendra que estar autenticado, para realizar la autenticacion se tiene que consultar el controller /Token/Generate el cual solicita el Id del Owner con el que se desea autenticar
