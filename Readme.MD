@@ -176,4 +176,6 @@ Para acceder a los controllers de Owner y Property se tendra que estar autentica
 este servicio de autenticacion es meramente de ejemplo por lo cual no requiere de credenciales de acceso, y las acciones referentes a realizar en los controllers no estaran limitadas unicamente a este Owner con el que se autentica, asi que 
 podra crear propierties para cualquier Owner que desee y asi mismo modificarlas
 
+Si se ejecuto el script inicial SQL se podra generar el token consultando el controller con el siguiente parametro 3522FFB1-806B-4A48-AE27-8F39997BACF0
+
 por medio de Swagger se puede agregar el token a las solicitudes
