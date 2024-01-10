@@ -27,6 +27,7 @@ namespace MU.WebApi.Controllers
         [HttpGet]
         [SwaggerOperation("GetAll")]
         [ProducesResponseType(200)]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var listOwnersResult = await _mediator.Send(new GetAllOwnersQuery());
