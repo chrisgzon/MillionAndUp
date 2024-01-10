@@ -28,7 +28,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Properties.Unit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C0C489FE-A5CF-47E4-99AD-E511028D9EE3}"
 	ProjectSection(SolutionItems) = preProject
-		Controllers.MD = Controllers.MD
 		Readme.MD = Readme.MD
 	EndProjectSection
 EndProject
