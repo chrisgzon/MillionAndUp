@@ -1,6 +1,5 @@
 ﻿using ErrorOr;
 using MediatR;
-using MU.Application.Services.ImageService;
 using MU.Domain.Entities.Properties;
 using MU.Domain.Entities.PropertyImages;
 using MU.Domain.Primitives;
@@ -31,6 +30,10 @@ namespace MU.Application.UseCases.Properties.Commands.AddImage
             if (request.FileLengt / 1024 > FileLengthMaxKb)
             {
                 return PropertyImageErrors.SizeFileInvalid;
+            }
+            if (string.IsNullOrWhiteSpace(request.PathFolder))
+            {
+                return PropertyImageErrors.PathDirectoryNotGetted;
             }
 
             Property? Property = await _repositoryProperty.SearchByIdAsync(new PropertyId(request.IdProperty));

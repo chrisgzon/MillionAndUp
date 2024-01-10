@@ -18,5 +18,10 @@ namespace MU.Domain.Entities.PropertyImages
             code: "PropertyImage.IdProperty",
             description: "property not found, please review the identifier sended."
         );
+
+        public static Error PathDirectoryNotGetted { get; } = Error.Validation(
+            code: "PropertyImage.FilePath",
+            description: "The path of directory not getted."
+        );
     }
 }

@@ -6,7 +6,7 @@ using MU.Domain.Primitives;
 
 namespace MU.Application.UseCases.Properties.Commands.ChangePrice
 {
-    internal sealed class ChangePricePropertyCommandHandler : IRequestHandler<ChangePricePropertyCommand, ErrorOr<Unit>>
+    public sealed class ChangePricePropertyCommandHandler : IRequestHandler<ChangePricePropertyCommand, ErrorOr<Unit>>
     {
         private readonly IRepositoryProperty _repositoryProperty;
         private readonly IUnitOfWork _unitOfWork;
