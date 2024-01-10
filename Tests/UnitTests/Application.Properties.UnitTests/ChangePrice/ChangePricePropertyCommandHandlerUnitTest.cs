@@ -1,8 +1,6 @@
-﻿using MU.Application.UseCases.Properties.Commands.AddImage;
-using MU.Application.UseCases.Properties.Commands.ChangePrice;
+﻿using MU.Application.UseCases.Properties.Commands.ChangePrice;
 using MU.Application.UseCases.Properties.Commands.UpdatePrice;
 using MU.Domain.Entities.Properties;
-using MU.Domain.Entities.PropertyImages;
 using MU.Domain.Primitives;
 
 namespace Application.Properties.UnitTests.ChangePrice

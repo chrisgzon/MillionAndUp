@@ -6,7 +6,7 @@ using MU.Domain.ValueObjects;
 
 namespace MU.Application.UseCases.Properties.Commands.ChangeAddress
 {
-    internal sealed class ChangeAddressPropertyCommandHandler : IRequestHandler<ChangeAddressPropertyCommand, ErrorOr<Unit>>
+    public sealed class ChangeAddressPropertyCommandHandler : IRequestHandler<ChangeAddressPropertyCommand, ErrorOr<Unit>>
     {
         private readonly IRepositoryProperty _repositoryProperty;
         private readonly IUnitOfWork _unitOfWork;
