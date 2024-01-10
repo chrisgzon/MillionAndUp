@@ -2,6 +2,7 @@ Million And UP
 Proyecto realizado como parte del proceso de seleccion para ingresar a Million And Up
 
 Estructura del Proyecto
+```shell
 |-- MU.API
 |-- src
     |-- MU.Application
@@ -65,6 +66,7 @@ Estructura del Proyecto
 |-- .gitignore
 |-- Scripts
 |-- MillionAndUp.sln
+```
 
 MU.Application
 Descripción
