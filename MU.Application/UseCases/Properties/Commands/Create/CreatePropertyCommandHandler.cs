@@ -9,7 +9,7 @@ using MU.Domain.ValueObjects;
 
 namespace MU.Application.UseCases.Properties.Commands.Create
 {
-    internal sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, ErrorOr<Guid>>
+    public sealed class CreatePropertyCommandHandler : IRequestHandler<CreatePropertyCommand, ErrorOr<Guid>>
     {
         private readonly IRepositoryOwner _ownerRepository;
         private readonly IUnitOfWork _unitOfWork;
