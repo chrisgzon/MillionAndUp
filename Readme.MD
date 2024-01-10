@@ -168,7 +168,7 @@ Configuración
 * y posteriormente generar el script SQL con el siguiente comando: dotnet ef migrations script -s MU.WebApi -p MU.Infrastructure
   recurerda que si lo haces de esta forma sera necesario hacer el insert en base de datos del Owner para asi generar el token con este id
 
-* Ejecuta el proyecto de la API: dotnet run --project MyProject.API.
+* Ejecuta el proyecto de la API: dotnet run --project MU.WebApi.
 
 
 
