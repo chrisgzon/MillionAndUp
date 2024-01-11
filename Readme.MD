@@ -79,7 +79,7 @@ La capa de aplicación contiene los servicios de aplicación que orquestan la l�
 
 Tecnologías Utilizadas
 
-* C# .NET Core 6
+* C# .NET 6
 
 * MediatR para implementar CQRS y para manejar los eventos del dominio
 
@@ -102,7 +102,7 @@ se creo una clase "AggregateRoot", la cual provee los eventos a la entidad que l
 
 Tecnologías Utilizadas
 
-* C# .NET Core 6
+* C# .NET 6
 
 * MediatR para implementar DDD y suscribir eventos
 
@@ -122,7 +122,7 @@ en el api del proyecto, de igual manera si se deseara se podrian retornar estas 
 
 Tecnologías Utilizadas
 
-* C# .NET Core 6
+* C# .NET 6
 
 * MediatR para hacer la publicacion de los eventos de dominio
 
@@ -139,7 +139,7 @@ La API .NET Core expone los servicios de aplicación a través de controladores 
 
 * Tecnologías Utilizadas
 
-* C# .NET Core 6
+* C# .NET 6
 
 * ASP.NET Core API
 
